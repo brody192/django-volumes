@@ -1,14 +1,14 @@
-## Deploy
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/AWUIv6)
-
 ---
 title: Django Volume Support
 description: A Django Template with Volume Support for Railway
 tags:
   - django
-  - hypercorn
+  - railway volumes
   - python
 ---
+## Deploy
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/AWUIv6)
+
 
 # Django with Volume Support Example
 
@@ -23,7 +23,7 @@ This example template starts a Django server utilizing volume support on Railway
 ## 💁‍♀️ How to use
 
 - Clone locally and install packages with pip using `pip install -r requirements.txt`
-- Run locally using `hypercorn main:app --reload`
+- Run locally using `python manage.py migrate && python manage.py collectstatic --noinput && gunicorn mysite.wsgi`
 
 ## 📝 Troubleshooting
 If you get the following error `No such file or directory: '/app/media/directory/...'` make sure your directory exists since your folder structure has to be build from scratch for production purpose on the persistent storage.
