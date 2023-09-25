@@ -9,7 +9,6 @@ tags:
 ## Deploy
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/AWUIv6)
 
-
 # Django with Volume Support Example
 
 This example template starts a Django server utilizing volume support on Railway for storing and serving assets.
@@ -35,3 +34,6 @@ new_directory = os.path.join(settings.MEDIA_ROOT, 'directory')
 if not os.path.exists(new_directory):
   os.makedirs(new_directory)
 ```
+
+## Support
+<a href="https://www.buymeacoffee.com/vinfehring" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
