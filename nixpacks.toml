@@ -1,0 +1,12 @@
+# set up some variables to minimize annoyance
+[variables]
+    PIP_DISABLE_PIP_VERSION_CHECK = '1' # the update check is relatively useless in a production environment
+
+# default setup phase
+[phases.setup]
+    nixPkgs = ['...', 'caddy', 'parallel'] # install caddy to serve media files, install parallel to run caddy and gunicorn at the same time
+
+# format the caddyfile
+[phases.fmt]
+    dependsOn = ['setup'] # run after setup
+    cmds = ['caddy fmt --overwrite'] # format the caddyfile and overwrite changes

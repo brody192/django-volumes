@@ -1,11 +1,6 @@
 {
-    "$schema": "https://railway.app/railway.schema.json",
-    "build": {
-        "builder": "NIXPACKS"
-    },
+    "$schema": "https://schema.up.railway.app/railway.schema.json",
     "deploy": {
-        "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn mysite.wsgi",
-        "restartPolicyType": "ON_FAILURE",
-        "restartPolicyMaxRetries": 10
+        "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && parallel --ungroup --halt now,fail=1 ::: 'caddy run 2>&1' 'gunicorn -b 127.0.0.1:8000 mysite.wsgi'"
     }
 }

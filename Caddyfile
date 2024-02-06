@@ -1,0 +1,41 @@
+# global options
+{
+	# theres no need for the admin api in railway's environment
+	admin off
+	# storage isn't persistent anyway
+	persist_config off
+	# railway handles https for us, this would cause issues if left enabled
+	auto_https off
+	# runtime logs
+	log {
+		# set runtime log format to json mode 
+		format json
+	}
+	# server options
+	servers {
+		# trust railway's proxy
+		trusted_proxies static private_ranges
+	}
+}
+
+# site block, listens on the $PORT environment variable, automatically assigned by railway
+:{$PORT} {
+	# access logs
+	log {
+		format json # set access log format to json mode
+	}
+
+	# handle all requests for media urls
+	# keep in sync with settings.MEDIA_URL
+	handle_path /media/* {
+		# set where to serve static assets from the 'media' folder
+		# keep in sync with settings.MEDIA_ROOT
+		root * media
+
+		# serve files from the set directory
+		file_server
+	}
+
+	# proxy everything else to gunicorn
+	reverse_proxy 127.0.0.1:8000
+}
